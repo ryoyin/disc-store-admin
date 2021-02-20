@@ -12,5 +12,10 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->resource('categories', CategoryController::class);
+    $router->resource('studios', StudioController::class);
+    $router->resource('disc-formats', DiscFormatController::class);
+    $router->resource('tags', TagController::class);
+    $router->resource('discs', DiscController::class);
 
 });
