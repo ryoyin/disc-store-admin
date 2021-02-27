@@ -71,3 +71,11 @@ Route::middleware('auth:sanctum')->prefix('disc')->group(function () {
     });
     Route::get('/list', [DiscController::class, 'show']);
 });
+
+Route::middleware('auth:sanctum')->get('/user', function () {
+    return response(Auth::user());
+});
+
+Route::get('/', function() {
+    return response(['message' => 'alive']);
+});
