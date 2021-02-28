@@ -58,7 +58,16 @@ Route::post('/sanctum/token', function (Request $request) {
         ]);
     }
 
-    return $user->createToken($request->device_name)->plainTextToken;
+    $return = [
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'token' => $user->createToken($request->device_name)->plainTextToken
+        ]
+    ];
+
+    return response($return);
 });
 
 Route::middleware('auth:sanctum')->get('/testauth', function() {
