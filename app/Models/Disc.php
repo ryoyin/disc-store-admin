@@ -18,7 +18,7 @@ class Disc extends Model
     {
         return $this->hasMany(DiscImage::class);
     }
-    
+
     public function discFormat()
     {
         return $this->belongsTo(DiscFormat::class);

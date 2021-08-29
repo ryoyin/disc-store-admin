@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Disc;
 use App\Http\Controllers\Disc\DiscController;
+
+use function PHPSTORM_META\map;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,14 +31,14 @@ Route::prefix('user')->group(function() {
             'email'    => 'unique:users|required',
             'password' => 'required',
         ];
-    
+
         $input     = $request->only('name', 'email','password');
         $validator = Validator::make($input, $rules);
-    
+
         if ($validator->fails()) {
             return response()->json(['success' => false, 'error' => $validator->messages()]);
         }
-        
+
         $name     = $request->name;
         $email    = $request->email;
         $password = $request->password;
@@ -85,6 +88,26 @@ Route::middleware('auth:sanctum')->prefix('disc')->group(function () {
 
 Route::middleware('auth:sanctum')->get('/user', function () {
     return response(Auth::user());
+});
+
+Route::get('/discs/all', function() {
+    $discs = Disc::all();
+
+    $discsInfo = [];
+
+    foreach ($discs as $dIndex => $disc) {
+        $category = $disc->category;
+        $discFormat = $disc->discFormat;
+        $studio = $disc->studio;
+
+        $discsInfo[$dIndex] = $disc;
+        $discsInfo[$dIndex]['coverImage'] = $disc->images->first();
+        // $discsInfo[$dIndex]['category'] = $category->name;
+        // $discsInfo[$dIndex]['discFormat'] = $discFormat->name;
+        // $discsInfo[$dIndex]['studio'] = $studio->name;
+    }
+
+    return $discsInfo;
 });
 
 Route::get('/', function() {
