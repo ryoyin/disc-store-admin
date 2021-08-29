@@ -31,6 +31,7 @@ Route::prefix('user')->group(function() {
 
 Route::prefix('disc')->group(function() {
     Route::get('/all', [DiscController::class, 'all']);
+    Route::get('/detail/{id}', [DiscController::class, 'detail']);
 });
 
 // auth is required on below routes (bearer token)

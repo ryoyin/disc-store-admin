@@ -27,4 +27,17 @@ class DiscController extends Controller
     
         return $discsInfo;
     }
+
+    public function detail(Request $request)
+    {
+        $disc = Disc::where('id', '=', $request->id)->get();
+        $relatedDisc = Disc::all();
+
+        $data = [
+            'disc' => $disc,
+            'relatedDisc' => $relatedDisc
+        ];
+
+        return $data;
+    }
 }
