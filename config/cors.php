@@ -19,15 +19,17 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://127.0.0.1:3006'],
+    'allowed_origins' => ['*'],
+
+    // 'allowed_origin_header' => ['*'],
 
     'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers' => false,
 
-    'max_age' => 0,
+    'max_age' => false,
 
     'supports_credentials' => false,
 
