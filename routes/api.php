@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiscController;
+use App\Http\Controllers\CategoryController;
 
 // use function PHPSTORM_META\map;
 
@@ -32,6 +33,11 @@ Route::prefix('user')->group(function() {
 Route::prefix('disc')->group(function() {
     Route::get('/all', [DiscController::class, 'all']);
     Route::get('/detail/{id}', [DiscController::class, 'detail']);
+});
+
+Route::prefix('category')->group(function () {
+    Route::get('/all', [CategoryController::class, 'all']);
+    Route::get('/{slug}/discs', [CategoryController::class, 'getDiscs']);
 });
 
 // auth is required on below routes (bearer token)

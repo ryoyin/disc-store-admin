@@ -32,6 +32,7 @@ class DiscController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
+        $grid->column('slug', __('Slug'));
         // $grid->column('description', __('Description'));
         $grid->column('price', __('£'));
         $grid->column('disc_format_id', __('Format'))
@@ -73,6 +74,7 @@ class DiscController extends AdminController
             return $output;
         })->unescape();
         $show->field('name', __('Name'));
+        $show->field('slug', __('Slug'));
         $show->field('description', __('Description'));
         $show->field('price', __('Price'));
         $show->field('discFormat', __('Format'))->as(function($format) {
@@ -103,6 +105,7 @@ class DiscController extends AdminController
         $form = new Form(new Disc());
 
         $form->text('name', __('Name'));
+        $form->text('slug', __('Slug'));
         $form->multipleFile('images','Images')->pathColumn('path')->removable();
         $form->textarea('description', __('Description'));
         $form->decimal('price', __('Price'));
