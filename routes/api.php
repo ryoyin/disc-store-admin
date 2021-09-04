@@ -32,7 +32,7 @@ Route::prefix('user')->group(function() {
 
 Route::prefix('disc')->group(function() {
     Route::get('/all', [DiscController::class, 'all']);
-    Route::get('/detail/{id}', [DiscController::class, 'detail']);
+    Route::get('/detail/{slug}', [DiscController::class, 'detail']);
 });
 
 Route::prefix('category')->group(function () {

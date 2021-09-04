@@ -30,12 +30,20 @@ class DiscController extends Controller
 
     public function detail(Request $request)
     {
-        $disc = Disc::where('id', '=', $request->id)->get();
-        $relatedDisc = Disc::all();
+        $disc = Disc::where('slug', '=', $request->slug)->first();
+        $disc->category;
+        $disc->discFormat;
+        $disc->studio;
+        $disc->images;
+
+        $relatedDiscs = Disc::all();
+        foreach ($relatedDiscs as $rIndex => $relatedDisc) {
+            $relatedDiscs[$rIndex]['coverImage'] = $relatedDisc->images->first();
+        }
 
         $data = [
-            'disc' => $disc,
-            'relatedDisc' => $relatedDisc
+            'detail' => $disc,
+            'relatedDiscs' => $relatedDiscs
         ];
 
         return $data;
