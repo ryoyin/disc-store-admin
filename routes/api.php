@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiscController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
 
 // use function PHPSTORM_META\map;
 
@@ -50,5 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/detail', function () {
             return response(Auth::user());
         });
+    });
+
+    Route::prefix('cart')->group(function() {
+        Route::post('/addItem', [CartController::class, 'addItem']);
+        Route::post('/removeItem', [CartController::class, 'addItem']);
     });
 });
