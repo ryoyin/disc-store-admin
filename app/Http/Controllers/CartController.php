@@ -24,7 +24,7 @@ class CartController extends Controller
 
     public function removeItem(Request $request)
     {
-        if (isset($request->user_id) && isset($request->disc_id)) {
+        if (isset($request->cart_id)) {
             $cart = Cart::where('id', '=', $request->cart_id)->first();
             $cart->delete();
             return true;
