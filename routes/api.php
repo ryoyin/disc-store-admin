@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('cart')->group(function() {
+        Route::get('/listItem/{user_id}', [CartController::class, 'listItem']);
         Route::post('/addItem', [CartController::class, 'addItem']);
         Route::post('/removeItem', [CartController::class, 'removeItem']);
     });

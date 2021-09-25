@@ -53,7 +53,11 @@ class UserController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'token' => $user->createToken($request->device_name)->plainTextToken
+                'token' => $user->createToken($request->device_name)->plainTextToken,
+                'cart' => [
+                    'qty' => count($user->carts),
+                    'items' => $user->carts
+                ]
             ]
         ];
     
